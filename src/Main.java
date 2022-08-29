@@ -1,64 +1,92 @@
-import java.time.LocalDate;
-
 public class Main {
     public static void main(String[] args) {
+        task0();
         task1();
-        //task2();
+        task2();
         task3();
+    }
+
+
+    public static void task0() {
+        int a = 5;
+        int b = 6;
+        sum(a, b);
+    }
+
+    public static void sum(int x, int y) {
+        int sum = x + y;
+        System.out.println(sum);
+
     }
 
     public static void task1() {
         int year = 2000;
-        System.out.println(year + (outputTheYear(year)));
+        checkYear(year);
     }
 
-    public static String outputTheYear(int thisYear) {
-        if (thisYear % 4 == 0 && thisYear % 100 != 0 || thisYear % 400 == 0) {
-            return (" - високосный год");
+    public static void checkYear(int year) {
+
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+            System.out.println(year + " - високосный год");
         } else {
-            return (" - не високосный год");
+            System.out.println(year + " - не високосный год");
         }
     }
 
-  /*  public static void task2() {
-        int clientOS = 0;
-        int currentYear = LocalDate.now().getYear();
-        System.out.println(currentYear + suggestVersion());
+    public static void task2() {
+        boolean typeOC = true;
+        int clientDeviceYear = 2016;
+        applicationVersion(typeOC, clientDeviceYear);
     }
-    public static String suggestVersion( int clientOS, int currentYear) {
 
-        if (clientOS == 1) {
-            if ( currentYear >= 2015) {
-               return ("Установите версию приложения для iOS по ссылке");
-
-            } else {
-                return ("Установи облегченную версию приложения для iOS по ссылке");
-            }
+    public static void applicationVersion(boolean typeOC, int clientDeviceYear) {
+        if (clientDeviceYear < 2015 && !typeOC) {
+            System.out.println("Установите облегченную версию для iOS по ссылке");
+            return;
         }
-        {
-            if (currentYear >= 2015) {
-                return ("Установите версию приложения для Android по ссылке");
 
-            } else {
-               return ("Установи облегченную версию приложения для Android по ссылке");
-            }
-        }*/
+        if (clientDeviceYear >= 2015 && !typeOC) {
+            System.out.println("Установите обычную версию для iOS по ссылке");
+            return;
+        }
+        if (clientDeviceYear < 2015 && typeOC) {
+            System.out.println("Установите облегченную версию для Android по ссылке");
+            return;
+        } else {
+            System.out.println("Установите обычную версию для Android по ссылке");
+            return;
+        }
+    }
 
-     public static void task3() {
+    public static void task3() {
         int deliveryDistance = 95;
-        System.out.println("" + daysForDelivery(deliveryDistance));
+        System.out.println(daysForDelivery(deliveryDistance));
+
     }
 
-    public static String daysForDelivery(int deliveryDistance1) {
-        if (deliveryDistance1 <= 20) {
-            return ("Потребуется дней " + 1);
-        } else if (deliveryDistance1 > 20 && deliveryDistance1 <= 60) {
-            return ("Потребуется дней " + 2);
-        } else if (deliveryDistance1 > 60 && deliveryDistance1 <= 100) {
-            return ("Потребуется дней " + 3);
+    public static int daysForDelivery(int deliveryDistance) {
+        int days = 0;
+        if (deliveryDistance <= 20) {
+            days = 1;
+            return days;
+        } else {
+            if ((deliveryDistance - 20) % 40 != 0) {
+                days = ((deliveryDistance - 20) / 40) + 2;
+            } else {
+                days = ((deliveryDistance - 20) / 40) + 1;
+            }
+
         }
-        return null;
+        return days;
     }
-
 }
+
+
+
+
+
+
+
+
+
 
